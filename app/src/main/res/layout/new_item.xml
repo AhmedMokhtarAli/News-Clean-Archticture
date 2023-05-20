@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.example.domain.entity.Article"/>
+        <variable
+            name="article"
+            type="Article" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp">
+
+        <ImageView
+            android:id="@+id/newImg"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_60sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            setImageSrc="@{article.urlToImage}"
+            />
+
+        <TextView
+            android:id="@+id/newTitle"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/newImg"
+            app:layout_constraintStart_toEndOf="@id/newImg"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:fontFamily="sans-serif-black"
+            android:textSize="@dimen/_12ssp"
+            android:text="@{article.title}"
+            />
+
+        <TextView
+            android:id="@+id/newDescription"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/newTitle"
+            app:layout_constraintStart_toStartOf="@id/newTitle"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:textSize="@dimen/_6ssp"
+            android:text="@{article.description}"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
