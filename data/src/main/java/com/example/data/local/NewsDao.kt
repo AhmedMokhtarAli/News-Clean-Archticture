@@ -5,10 +5,9 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.domain.entity.Article
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 
+/*
 @Dao
 interface NewsDao {
 
@@ -21,4 +20,4 @@ interface NewsDao {
     @Delete
     suspend fun removeFromFav(article: Article)
 
-}
+}*/

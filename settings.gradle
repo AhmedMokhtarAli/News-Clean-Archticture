@@ -12,7 +12,10 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "News Clean Arch"
+rootProject.name = "News CleanArch"
 include ':app'
-include ':domain'
 include ':data'
+include ':domain'
+include ':base'
+include ':utilis'
+include ':di'
