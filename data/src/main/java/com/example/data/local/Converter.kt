@@ -1,12 +1,12 @@
 package com.example.data.local
 
 import androidx.room.TypeConverter
-import com.example.domain.entity.Source
+import com.example.data.model.Source
 
 class Converter {
 
     @TypeConverter
-    fun fromSource(source:Source):String{
+    fun fromSource(source: Source):String{
         return source.name
     }
 

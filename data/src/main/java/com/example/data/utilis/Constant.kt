@@ -1,7 +1,7 @@
 package com.example.data.utilis
 
-class Constant {
+class Constant{
     companion object {
-        const val API_KEY="ebb2de8523aa4406a6adc8825c426a29"
+        const val API_KEY="99f17be3d33047b4b2d25bb88fb5f97b"
     }
 }
