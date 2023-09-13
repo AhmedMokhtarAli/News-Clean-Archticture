@@ -1,7 +1,11 @@
 package com.example.data.utilis
 
+import com.example.data.BuildConfig
+
+
 class Constant{
     companion object {
-        const val API_KEY="99f17be3d33047b4b2d25bb88fb5f97b"
+      /*  const val API_K=BuildConfig.API_KEY
+        const val BASE_U=BuildConfig.BASE_URL*/
     }
 }

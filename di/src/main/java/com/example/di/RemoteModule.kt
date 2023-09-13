@@ -1,6 +1,7 @@
 package com.example.di
 
 import com.example.data.remote.NewsApi
+import com.example.utilis.api.ConstantApi.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,14 +26,19 @@ object RemoteModule {
             .addInterceptor(loggingInterceptor)
             .build()
     }
+    @Provides
+    fun providesBaseUrl(): String {
+        return BASE_URL
+    }
 
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient) = Retrofit
+    fun provideRetrofit(okHttpClient: OkHttpClient,baseUrl:String) = Retrofit
         .Builder()
         .client(okHttpClient)
-        .baseUrl("https://newsapi.org/v2/")
+        .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
+
 
     @Provides
     fun provideApiInterface(retrofit: Retrofit) = retrofit.create(NewsApi::class.java)

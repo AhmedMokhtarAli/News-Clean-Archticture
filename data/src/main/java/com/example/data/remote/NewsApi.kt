@@ -2,8 +2,7 @@ package com.example.data.remote
 
 import com.example.data.model.Article
 import com.example.data.model.BaseEndPointResponse
-import com.example.data.model.NewsResponse
-import com.example.data.utilis.Constant.Companion.API_KEY
+import com.example.utilis.api.ConstantApi.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -17,7 +17,7 @@ inline fun <T, R> Flow<Response<BaseEndPointResponse<T>>>.transformResponseData(
 
         when {
             response.isSuccessful && response.body() != null -> {
-                onSuccess(response!!.body()!!.data!!)
+                onSuccess(response.body()!!.data!!)
             /* if (body?.data is NewsResponse ) {
                     val newsResponse = body.data as NewsResponse
 //                    user.token = body.meta?.token
