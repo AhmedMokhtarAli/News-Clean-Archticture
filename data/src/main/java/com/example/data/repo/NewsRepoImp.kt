@@ -11,15 +11,15 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class NewsRepoImp @Inject constructor(val apiService: NewsApi/*, val newsDao: NewsDao*/) : NewsRepo{
-    override suspend fun getNewsFromRemote(country: String, pageNumber: Int): Flow<Response<BaseEndPointResponse<List<Article>>>> {
+      override suspend fun getNewsFromRemote(country: String, pageNumber: Int): Flow<Response<BaseEndPointResponse<List<Article>>>> {
     return    flow {
             emit(     apiService.getNews(
-                country/*,pageNumber*/
+                country
             ))
         }
     }
 
-//    override fun getNewsFromLocal(): Flow<List<Article>> = newsDao.getFavNews()
+    //    override fun getNewsFromLocal(): Flow<List<Article>> = newsDao.getFavNews()
 
 
    /* override suspend fun searchForNews(searchQuery: String, pageNumber: Int) =

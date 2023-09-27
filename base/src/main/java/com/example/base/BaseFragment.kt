@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -17,15 +18,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
-typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
-//@AndroidEntryPoint
-abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>)
+@AndroidEntryPoint
+abstract class BaseFragment(private val layoutResource: Int)
     : Fragment() {
-    private var _binding: VB? = null
-    protected val binding: VB get() = _binding!!
-
-    private var baseActivity: BaseActivty<ViewBinding>? = null
+    private var fragmentView:ViewGroup? = null
+    private val baseViewModel:BaseViewModel by activityViewModels()
+    var savedInstanceState:Bundle?=null
+    private var baseActivity: BaseActivty? = null
 
 
     override fun onCreateView(
@@ -33,24 +33,21 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>)
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = inflate.invoke(inflater, container, false)
-
-        return binding.root
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if(context is BaseActivty<*>){
-            val activty = context as BaseActivty<ViewBinding>
-            this.baseActivity=activty
-        }
+        return inflater.inflate(layoutResource,container,false)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        baseActivity?.hideProgress()
+        fragmentView = null
     }
-
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is BaseActivty){
+            val activty = context as BaseActivty
+            this.baseActivity=activty
+        }
+    }
     override fun onDetach() {
         super.onDetach()
         baseActivity=null
@@ -81,9 +78,11 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>)
                         }
                         is NetworkState.Loading -> {
 //                            toast("loading...")
+                            baseActivity?.showProgress()
                         }
                         is NetworkState.DisMissLoading -> {
 //                            toast("dismissloading")
+                            baseActivity?.hideProgress()
                         }
                         else -> {}
                     }

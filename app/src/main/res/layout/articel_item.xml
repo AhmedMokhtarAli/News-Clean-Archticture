@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/articleImg"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/blue_button_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/top_round_circle" />
+
+        <TextView
+            android:id="@+id/articleTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:fontFamily="@font/roboto_bold"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/articleImg"
+            app:layout_constraintTop_toBottomOf="@id/articleImg"
+            tools:text="title" />
+
+        <TextView
+            android:id="@+id/articleDescription"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/roboto_medium"
+            android:maxLines="3"
+            android:text="descriptiondescription"
+            android:textColor="@color/dark_gray"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/articleImg"
+            app:layout_constraintTop_toBottomOf="@id/articleTitle" />
+
+        <ImageView
+            android:id="@+id/savedImg"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/un_saved_item"
+            app:layout_constraintBottom_toBottomOf="@+id/articleDescription"
+            app:layout_constraintEnd_toEndOf="@+id/articleImg" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
