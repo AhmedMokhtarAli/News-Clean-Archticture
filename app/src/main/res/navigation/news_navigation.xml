@@ -16,4 +16,9 @@
         android:name="com.example.ui.fragments.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.example.ui.fragments.saved.SavedFragment"
+        android:label="fragment_saved"
+        tools:layout="@layout/fragment_saved" />
 </navigation>

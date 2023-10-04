@@ -1,6 +1,7 @@
 package com.example.di
 
 import com.example.data.remote.NewsApi
+import com.example.utilis.BuildConfig
 import com.example.utilis.api.ConstantApi.BASE_URL
 import dagger.Module
 import dagger.Provides

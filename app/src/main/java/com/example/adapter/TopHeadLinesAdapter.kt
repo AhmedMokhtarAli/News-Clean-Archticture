@@ -10,7 +10,7 @@ import com.example.data.model.Article
 import com.example.newscleanarch.R
 import com.example.newscleanarch.databinding.ArticelItemBinding
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class TopHeadLinesAdapter : RecyclerView.Adapter<TopHeadLinesAdapter.NewsViewHolder>() {
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.urlToImage == newItem.urlToImage
@@ -30,7 +30,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     override fun getItemCount(): Int = items.currentList.size
 
-    var saveState:((Boolean)->Unit)?=null
+    var saveState: ((Article) -> Unit)? = null
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val article = items.currentList.get(position)
         holder.bind(article)
@@ -38,26 +38,30 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     inner class NewsViewHolder(val articleItemBinding: ArticelItemBinding) :
         RecyclerView.ViewHolder(articleItemBinding.root) {
-        var isSaved = false
         fun bind(article: Article) {
             articleItemBinding.articleTitle.text = article.title
             articleItemBinding.articleDescription.text = article.description
             Glide.with(articleItemBinding.articleImg).load(article.urlToImage)
                 .into(articleItemBinding.articleImg)
             articleItemBinding.savedImg.setOnClickListener {
-                isSaved = !isSaved
-                when {
-                    isSaved -> {
+//                article.isSaved = article.isSaved.not()
+                articleItemBinding.savedImg.setImageResource(R.drawable.saved_item)
+                saveState?.invoke(article)
+
+            /* when {
+                    !article.isSaved -> {
+                        article.isSaved = article.isSaved.not()
                         articleItemBinding.savedImg.setImageResource(R.drawable.saved_item)
-                        saveState?.invoke(true)
+                        saveState?.invoke(article)
                     }
+
                     else -> {
+                        article.isSaved = article.isSaved.not()
                         articleItemBinding.savedImg.setImageResource(R.drawable.un_saved_item)
-                        saveState?.invoke(false)
-                    }
+                        saveState?.invoke(article)
+                    }*/
 
                 }
             }
         }
     }
-}

@@ -1,6 +1,6 @@
 package com.example.data.utilis
 
-import com.example.data.BuildConfig
+//import com.example.data.BuildConfig
 
 
 class Constant{

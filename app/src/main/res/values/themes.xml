@@ -23,4 +23,10 @@
         <item name="cornerSizeTopRight">20%</item>
     </style>
 
+    <style name="start_round_corners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">20%</item>
+        <item name="cornerSizeBottomLeft">20%</item>
+    </style>
+
 </resources>
