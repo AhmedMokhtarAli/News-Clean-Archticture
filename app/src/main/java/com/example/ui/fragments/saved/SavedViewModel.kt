@@ -34,4 +34,8 @@ class SavedViewModel @Inject constructor(
     fun removeFromSaved(article: Article) = viewModelScope.launch {
         manageSavedUsaCase.removeFromSaved(article)
     }
+
+    fun restoreArticle(article: Article)=viewModelScope.launch {
+        manageSavedUsaCase.addToSaved(article)
+    }
 }

@@ -1,8 +1,11 @@
 package com.example.ui.fragments.TopHeadLines
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.adapter.TopHeadLinesAdapter
 import com.example.base.BaseFragment
@@ -72,10 +75,17 @@ class TopHeadLinesFragment :
 //                toast(article!!.isSaved.toString())
             }*/
         }
+        topHeadLinesAdapter?.navigateToArticle = { article ->
+            navigateToArticleFragment(article)
+        }
     }
 
     private fun savedArticle(article: Article) {
         topHeadLinesViewModel.saveToLocal(article)
     }
 
+    @SuppressLint("ResourceType")
+    private fun navigateToArticleFragment(article: Article) {
+        findNavController().navigate(R.id.articleFragment, bundleOf("article" to article,"isOpenedFromSaved" to false))
+    }
 }

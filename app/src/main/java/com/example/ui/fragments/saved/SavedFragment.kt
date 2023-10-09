@@ -3,8 +3,10 @@ package com.example.ui.fragments.saved
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,9 +15,7 @@ import com.example.base.BaseFragment
 import com.example.data.model.Article
 import com.example.newscleanarch.R
 import com.example.newscleanarch.databinding.FragmentSavedBinding
-import com.example.utilis.printToLogD
-import com.example.utilis.toast
-import com.example.viewModels.ManageArticlesViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -27,7 +27,6 @@ class SavedFragment : BaseFragment(R.layout.fragment_saved) {
     private val binding get() = _binding!!
 
     private val savedViewModel by viewModels<SavedViewModel>()
-    private val manageArticlesViewModel by viewModels<ManageArticlesViewModel>()
 
     private var savedAdapter: SavedAdapter? = null
 
@@ -42,6 +41,7 @@ class SavedFragment : BaseFragment(R.layout.fragment_saved) {
         setupSavedRv()
         swipeToDelete()
 
+        setupClickActions()
     }
 
     override fun onDestroyView() {
@@ -57,6 +57,10 @@ class SavedFragment : BaseFragment(R.layout.fragment_saved) {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
+    }
+
+    private fun setupClickActions() {
+        savedAdapter?.navigateToArticle = { article -> navigateToArticleFragment(article) }
     }
 
     private fun getSavedArticles() {
@@ -84,14 +88,29 @@ class SavedFragment : BaseFragment(R.layout.fragment_saved) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 if (position >= 0 && position < savedAdapter!!.items.currentList.size) {
+                    val article = savedAdapter!!.items.currentList.get(position)
                     savedViewModel.removeFromSaved(
-                        article = savedAdapter!!.items.currentList.get(position)
+                        article = article
                     )
-//                    savedAdapter?.items?.submitList(articles)
-//                    savedAdapter?.notifyItemRemoved(position)
+                    Snackbar.make(
+                        binding.root,
+                        "article successfully deleted",
+                        Snackbar.LENGTH_LONG
+                    ).apply {
+                        setAction("Undo") {
+                            savedViewModel.restoreArticle(
+                                article =article
+                            )
+                        }.show()
+                    }
                 }
 
             }
         }).attachToRecyclerView(binding.savedRv)
+    }
+
+    @SuppressLint("ResourceType")
+    private fun navigateToArticleFragment(article: Article) {
+        findNavController().navigate(R.id.articleFragment, bundleOf("article" to article,"isOpenedFromSaved" to true))
     }
 }

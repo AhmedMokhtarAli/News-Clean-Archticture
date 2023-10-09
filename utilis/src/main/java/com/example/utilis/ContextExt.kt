@@ -29,10 +29,17 @@ fun Any?.printToLogE(tag: String = "DEBUG_LOG") {
 
 fun Activity.setTransparentStatusBar() {
 
-    WindowCompat.setDecorFitsSystemWindows(window,false)
-    window.statusBarColor=Color.TRANSPARENT
-/*    window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    WindowCompat.setDecorFitsSystemWindows(window, false)
+    window.statusBarColor = Color.TRANSPARENT
+    /*    window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
     window?.statusBarColor = Color.TRANSPARENT*/
-
-
 }
+
+fun View.gone() = run { visibility = View.GONE }
+
+fun View.visible() = run { visibility = View.VISIBLE }
+infix fun View.visibleIf(condition: Boolean) =
+    run { visibility = if (condition) View.VISIBLE else View.GONE }
+
+infix fun View.goneIf(condition: Boolean) =
+    run { visibility = if (condition) View.GONE else View.VISIBLE }

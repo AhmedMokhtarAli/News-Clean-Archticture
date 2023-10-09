@@ -1,4 +1,4 @@
-package com.example.viewModels
+package com.example.ui.fragments.Article
 
 import androidx.lifecycle.viewModelScope
 import com.example.base.BaseViewModel
@@ -9,10 +9,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ManageArticlesViewModel @Inject constructor(private val manageSavedUsaCase: ManageSavedUsaCase) :
+class ArticleViewModel @Inject constructor(private val manageSavedUsaCase: ManageSavedUsaCase) :
     BaseViewModel() {
 
-
-
-
+    fun saveArticle(article: Article) = viewModelScope.launch {
+            manageSavedUsaCase.addToSaved(article)
+    }
 }

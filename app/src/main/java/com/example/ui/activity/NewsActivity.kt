@@ -1,15 +1,14 @@
 package com.example.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.base.BaseActivty
 import com.example.newscleanarch.R
 import com.example.newscleanarch.databinding.ActivityMainBinding
-import com.example.utilis.printToLogD
+import com.example.utilis.goneIf
 import com.example.utilis.setTransparentStatusBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +24,7 @@ class NewsActivity : /*BaseActivty(R.layout.activity_main)*/ AppCompatActivity()
         setContentView(binding?.root)
         setupNavigation()
         setTransparentStatusBar()
+        manageBottomNavVisiabilty()
     }
 
     private fun setupNavigation() {
@@ -33,8 +33,13 @@ class NewsActivity : /*BaseActivty(R.layout.activity_main)*/ AppCompatActivity()
         navController = navHostFragment?.navController
         binding?.bottomNavView?.setupWithNavController(navController!!)
 
-        navController?.addOnDestinationChangedListener{_,destnation,_ ->
-            destnation.id.toString().printToLogD("llllllllllllllllll")
+
+    }
+
+    private fun manageBottomNavVisiabilty() {
+        navController?.addOnDestinationChangedListener { _, destnation, _ ->
+            binding?.bottomNavView?.goneIf(destnation.id == R.id.articleFragment)
         }
     }
+
 }

@@ -36,11 +36,12 @@ class SavedAdapter() : RecyclerView.Adapter<SavedAdapter.SavedViewHolder>() {
     override fun getItemCount(): Int = items.currentList.size
     override fun onBindViewHolder(holder: SavedViewHolder, position: Int) {
         holder.bind(items.currentList.get(position))
+        holder.setUpClickActions(article = items.currentList.get(position))
     }
 
 
-    var saveState: ((Article) -> Unit)? = null
-
+//    var saveState: ((Article) -> Unit)? = null
+    var navigateToArticle:((Article) -> Unit)?=null
     inner class SavedViewHolder(private val savedItemBinding: SavedItemBinding) :
         RecyclerView.ViewHolder(savedItemBinding.root) {
         fun bind(article: Article) {
@@ -48,7 +49,11 @@ class SavedAdapter() : RecyclerView.Adapter<SavedAdapter.SavedViewHolder>() {
             savedItemBinding.savedArticleDescription.text = article.description
             Glide.with(savedItemBinding.savedArticleImg).load(article.urlToImage)
                 .into(savedItemBinding.savedArticleImg)
-
+        }
+        fun setUpClickActions(article: Article){
+            savedItemBinding.root.setOnClickListener {
+                navigateToArticle?.invoke(article)
+            }
         }
     }
 }

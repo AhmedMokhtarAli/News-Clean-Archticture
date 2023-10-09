@@ -53,12 +53,6 @@
             app:layout_constraintStart_toStartOf="@+id/articleImg"
             app:layout_constraintTop_toBottomOf="@id/articleTitle" />
 
-        <ImageView
-            android:id="@+id/savedImg"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/un_saved_item"
-            app:layout_constraintBottom_toBottomOf="@+id/articleDescription"
-            app:layout_constraintEnd_toEndOf="@+id/articleImg" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -30,10 +30,12 @@ class TopHeadLinesAdapter : RecyclerView.Adapter<TopHeadLinesAdapter.NewsViewHol
 
     override fun getItemCount(): Int = items.currentList.size
 
+    var navigateToArticle: ((Article) -> Unit)? = null
     var saveState: ((Article) -> Unit)? = null
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val article = items.currentList.get(position)
         holder.bind(article)
+        holder.setUpClickActions(article)
     }
 
     inner class NewsViewHolder(val articleItemBinding: ArticelItemBinding) :
@@ -43,10 +45,19 @@ class TopHeadLinesAdapter : RecyclerView.Adapter<TopHeadLinesAdapter.NewsViewHol
             articleItemBinding.articleDescription.text = article.description
             Glide.with(articleItemBinding.articleImg).load(article.urlToImage)
                 .into(articleItemBinding.articleImg)
-            articleItemBinding.savedImg.setOnClickListener {
-//                article.isSaved = article.isSaved.not()
-                articleItemBinding.savedImg.setImageResource(R.drawable.saved_item)
-                saveState?.invoke(article)
+        }
+
+        fun setUpClickActions(article: Article) {
+            articleItemBinding.root.setOnClickListener {
+                navigateToArticle?.invoke(article)
+            }
+            /*
+
+                        articleItemBinding.savedImg.setOnClickListener {
+            //                article.isSaved = article.isSaved.not()
+                            articleItemBinding.savedImg.setImageResource(R.drawable.saved_item)
+                            saveState?.invoke(article)
+            */
 
             /* when {
                     !article.isSaved -> {
@@ -61,7 +72,6 @@ class TopHeadLinesAdapter : RecyclerView.Adapter<TopHeadLinesAdapter.NewsViewHol
                         saveState?.invoke(article)
                     }*/
 
-                }
-            }
         }
     }
+}
