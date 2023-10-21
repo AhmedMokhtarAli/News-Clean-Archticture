@@ -18,4 +18,5 @@ interface NewsRepo {
     suspend fun addNewToSaved(article: Article)
     suspend fun removeFromSaved(article: Article)
 
+    suspend fun searchNews(searchQuery:String) : Flow<Response<BaseEndPointResponse<List<Article>>>>
 }

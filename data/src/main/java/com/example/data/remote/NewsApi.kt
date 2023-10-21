@@ -15,9 +15,9 @@ interface NewsApi {
        @Query ("apiKey") api_key:String=API_KEY
                 ) : Response<BaseEndPointResponse<List<Article>>>
 
- /*   @GET("top-headlines")
-    suspend fun refreshNews(
-        @Query ("country") countryCode: String,
-        @Query ("apiKey") api_key:String=API_KEY,
-    ): Response<NewsResponse>*/
+    @GET("everything")
+    suspend fun searchNew(
+        @Query("q") searchQuery:String,
+        @Query("apiKey") api_key: String= API_KEY
+    ) : Response<BaseEndPointResponse<List<Article>>>
 }

@@ -3,6 +3,7 @@ package com.example.di
 import com.example.data.repo.NewsRepo
 import com.example.domain.usecases.GetNewsUseCase
 import com.example.domain.usecases.ManageSavedUsaCase
+import com.example.domain.usecases.SearchNewsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,16 +20,7 @@ object UseCaseModule {
     @Provides
     fun providesManageSavedArticles(newsRepo: NewsRepo)=
         ManageSavedUsaCase(newsRepo)
- /*   @Provides
-    fun providesSearchNews(newsRepo: NewsRepository):SearchNews=
-        SearchNews(newsRepo)
     @Provides
-    fun providesGetNewsFromLocal(newsRepo: NewsRepository):GetNews=
-        GetNews(newsRepo)
-    @Provides
-    fun providesAddToFav(newsRepo: NewsRepository):AddToFavorit=
-        AddToFavorit(newsRepo)
-    @Provides
-    fun providesRemoveFromFav(newsRepo: NewsRepository):RemoveFromFavorit=
-        RemoveFromFavorit(newsRepo)*/
+    fun providesSearchNews(newsRepo: NewsRepo):SearchNewsUseCase=
+        SearchNewsUseCase(newsRepo)
 }

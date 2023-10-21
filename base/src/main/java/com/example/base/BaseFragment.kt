@@ -77,11 +77,9 @@ abstract class BaseFragment(private val layoutResource: Int)
                                 onError(netWorkState.throwable)
                         }
                         is NetworkState.Loading -> {
-//                            toast("loading...")
                             baseActivity?.showProgress()
                         }
                         is NetworkState.DisMissLoading -> {
-//                            toast("dismissloading")
                             baseActivity?.hideProgress()
                         }
                         else -> {}

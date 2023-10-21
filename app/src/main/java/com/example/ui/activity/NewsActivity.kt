@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.base.BaseActivty
 import com.example.newscleanarch.R
 import com.example.newscleanarch.databinding.ActivityMainBinding
 import com.example.utilis.goneIf

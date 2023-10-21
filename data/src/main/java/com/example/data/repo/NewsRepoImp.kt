@@ -22,16 +22,12 @@ class NewsRepoImp @Inject constructor(val apiService: NewsApi, val newsDao: News
             )
         }
     }
-
+    override suspend fun searchNews(searchQuery: String): Flow<Response<BaseEndPointResponse<List<Article>>>> {
+        return flow { emit(apiService.searchNew(searchQuery)) }
+    }
 
     override fun getNewsFromLocal(): Flow<List<Article>> = newsDao.getAllArticles()
 
-
-    /* override suspend fun searchForNews(searchQuery: String, pageNumber: Int) =
-         flow {
-             emit(apiService.)
-         }
- */
     override suspend fun addNewToSaved(article: Article) {
         newsDao.addToSaved(article)
     }
