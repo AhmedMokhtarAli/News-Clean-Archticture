@@ -79,6 +79,10 @@ dependencies {
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3'
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
 
+    //Custom-Progress-Stages
+    implementation 'com.github.jasvir23007:Custom-Progress-Stages:1.1'
+
+
     //retrofit,logging-interceptor and Gson
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
@@ -110,8 +114,14 @@ dependencies {
     def paging_version = '3.2.1'
     implementation "androidx.paging:paging-runtime:$paging_version"
 
+    /*//sweetalert
+   implementation 'com.github.taimoorsultani:android-sweetalert2:2.0.2'*/
+
+    implementation 'com.github.f0ris.sweetalert:library:1.6.2'
+
 
     implementation project(path :':base')
+
 
 }
 

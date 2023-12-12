@@ -3,7 +3,10 @@ package com.example.data.repo
 import com.example.data.local.NewsDao
 import com.example.data.model.Article
 import com.example.data.model.BaseEndPointResponse
+import com.example.data.model.ArticleSource
+import com.example.data.model.Source
 import com.example.data.remote.NewsApi
+import com.example.utilis.printToLogD
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
@@ -22,6 +25,7 @@ class NewsRepoImp @Inject constructor(val apiService: NewsApi, val newsDao: News
             )
         }
     }
+
     override suspend fun searchNews(searchQuery: String): Flow<Response<BaseEndPointResponse<List<Article>>>> {
         return flow { emit(apiService.searchNew(searchQuery)) }
     }
@@ -36,4 +40,9 @@ class NewsRepoImp @Inject constructor(val apiService: NewsApi, val newsDao: News
         newsDao.removeFromSaved(article)
     }
 
+    override suspend fun getSources(): Flow<Response<BaseEndPointResponse<List<Source>>>> {
+    return    flow {
+            emit(apiService.getSources())
+        }
+    }
 }

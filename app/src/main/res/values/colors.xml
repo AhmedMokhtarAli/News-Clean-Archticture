@@ -11,4 +11,8 @@
     <color name="un_selected_bottom_nav">#7E7676</color>
     <color name="default_background">#EBE7E7</color>
     <color name="light_green">#5AD55F</color>
+
+    <color name="primaryColor">#012cda</color>
+    <color name="white3">#A8A8A8</color>
+
 </resources>

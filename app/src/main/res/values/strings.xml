@@ -9,4 +9,7 @@
     <string name="saved">Saved</string>
     <string name="Search">Search</string>
     <string name="save_article">save article</string>
+    <string name="everything">Everything\n</string>
+    <string name="all">all</string>
+    <string name="sources">Sources</string>
 </resources>

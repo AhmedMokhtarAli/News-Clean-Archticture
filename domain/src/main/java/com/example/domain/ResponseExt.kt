@@ -1,7 +1,6 @@
 package com.example.domain
 
 import com.example.data.model.BaseEndPointResponse
-import com.example.data.model.NewsResponse
 import com.example.utilis.api.handleError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
@@ -17,10 +16,20 @@ inline fun <T, R> Flow<Response<BaseEndPointResponse<T>>>.transformResponseData(
 
         when {
             response.isSuccessful && response.body() != null -> {
-                onSuccess(response.body()!!.data!!)
+                /*onSuccess(response.body()!!.data!!)
+                onSuccess(response.body()!!.sources!!)
+*/
+                response.body()?.data?.let{
+                    onSuccess(it)
+                }
+
+                response.body()?.sources?.let{
+                    onSuccess(it)
+                }
+
             /* if (body?.data is NewsResponse ) {
                     val newsResponse = body.data as NewsResponse
-//                    user.token = body.meta?.token
+                    user.token = body.meta?.token
                     onSuccess(newsResponse as T)
                 } else
                     onSuccess(response.body()!!.data!!)*/

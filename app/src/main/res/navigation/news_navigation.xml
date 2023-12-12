@@ -33,4 +33,21 @@
             android:name="isOpenedFromSaved"
             app:argType="boolean" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.ui.fragments.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/sourceFragment"
+        android:name="com.example.ui.fragments.sources.SourceFragment"
+        android:label="fragment_source"
+        >
+        <argument
+            android:name="sourceId"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

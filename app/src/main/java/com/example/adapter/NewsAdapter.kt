@@ -7,10 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.data.model.Article
-import com.example.newscleanarch.R
 import com.example.newscleanarch.databinding.ArticelItemBinding
 
-class TopHeadLinesAdapter : RecyclerView.Adapter<TopHeadLinesAdapter.NewsViewHolder>() {
+class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.urlToImage == newItem.urlToImage
@@ -51,27 +50,6 @@ class TopHeadLinesAdapter : RecyclerView.Adapter<TopHeadLinesAdapter.NewsViewHol
             articleItemBinding.root.setOnClickListener {
                 navigateToArticle?.invoke(article)
             }
-            /*
-
-                        articleItemBinding.savedImg.setOnClickListener {
-            //                article.isSaved = article.isSaved.not()
-                            articleItemBinding.savedImg.setImageResource(R.drawable.saved_item)
-                            saveState?.invoke(article)
-            */
-
-            /* when {
-                    !article.isSaved -> {
-                        article.isSaved = article.isSaved.not()
-                        articleItemBinding.savedImg.setImageResource(R.drawable.saved_item)
-                        saveState?.invoke(article)
-                    }
-
-                    else -> {
-                        article.isSaved = article.isSaved.not()
-                        articleItemBinding.savedImg.setImageResource(R.drawable.un_saved_item)
-                        saveState?.invoke(article)
-                    }*/
-
         }
     }
 }

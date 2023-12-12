@@ -7,11 +7,12 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.adapter.TopHeadLinesAdapter
+import com.example.adapter.NewsAdapter
 import com.example.base.BaseFragment
 import com.example.data.model.Article
 import com.example.newscleanarch.R
 import com.example.newscleanarch.databinding.FragmentTopHeadlinesBinding
+import com.example.utilis.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 const val TAG: String = "News State"
@@ -25,14 +26,14 @@ class TopHeadLinesFragment :
 
     private val topHeadLinesViewModel by viewModels<TopHeadLinesViewModel>()
 
-    private var topHeadLinesAdapter: TopHeadLinesAdapter? = null
+    private var topHeadLinesAdapter: NewsAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentTopHeadlinesBinding.bind(view)
 
-        topHeadLinesAdapter = TopHeadLinesAdapter()
+        topHeadLinesAdapter = NewsAdapter()
 
 
         topHeadLinesViewModel.getNews("us", 1)
@@ -66,14 +67,6 @@ class TopHeadLinesFragment :
     private fun handelArticleClickcked() {
         topHeadLinesAdapter?.saveState = { article ->
             savedArticle(article)
-            /*
-            if (article.isSaved) {
-                savedArticle(article)
-//                toast(article!!.isSaved.toString())
-            } else {
-                removeArticle(article)
-//                toast(article!!.isSaved.toString())
-            }*/
         }
         topHeadLinesAdapter?.navigateToArticle = { article ->
             navigateToArticleFragment(article)

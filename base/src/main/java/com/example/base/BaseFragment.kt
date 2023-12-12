@@ -82,7 +82,6 @@ abstract class BaseFragment(private val layoutResource: Int)
                         is NetworkState.DisMissLoading -> {
                             baseActivity?.hideProgress()
                         }
-                        else -> {}
                     }
                 }
             }

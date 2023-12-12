@@ -29,4 +29,11 @@
         <item name="cornerSizeBottomLeft">20%</item>
     </style>
 
+    <style name="round_corners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+
+
 </resources>

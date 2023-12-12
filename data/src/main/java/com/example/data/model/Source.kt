@@ -1,10 +1,11 @@
 package com.example.data.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-@Parcelize
 data class Source(
-    val id: String?,
-    val name: String?
-) : Parcelable
+    val category: String,
+    val country: String,
+    val description: String,
+    val id: String,
+    val language: String,
+    val name: String,
+    val url: String
+)
